@@ -7,14 +7,16 @@ const {
   deleteCrop
 } = require("../controllers/cropController");
 
+const { protect } = require("../middleware/authMiddleware");
+
 const router = express.Router();
 
-router.post("/", createCrop);
-
+// Anyone can view crops
 router.get("/", getCrops);
 
-router.put("/:id", updateCrop);
-
-router.delete("/:id", deleteCrop);
+// Logged-in users can manage crops
+router.post("/", protect, createCrop);
+router.put("/:id", protect, updateCrop);
+router.delete("/:id", protect, deleteCrop);
 
 module.exports = router;

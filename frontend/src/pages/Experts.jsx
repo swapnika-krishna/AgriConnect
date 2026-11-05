@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -22,7 +21,6 @@ function Experts() {
       const response = await axios.get(API_URL);
       const data = response.data;
 
-      // Handle different API response formats
       const questionList = Array.isArray(data)
         ? data
         : Array.isArray(data?.questions)
@@ -50,12 +48,25 @@ function Experts() {
     e.preventDefault();
     setMessage("");
 
+    if (!token || !user) {
+      setMessage("Please log in before submitting a question.");
+      return;
+    }
+
     try {
-      await axios.post(API_URL, {
-        farmerName,
-        question,
-        category,
-      });
+      await axios.post(
+        API_URL,
+        {
+          farmerName,
+          question,
+          category,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       setQuestion("");
       setMessage("Your question was submitted successfully!");
@@ -122,7 +133,6 @@ function Experts() {
 
       {message && <p>{message}</p>}
 
-      {/* Farmer Question Form */}
       <h2>Ask an Agricultural Question</h2>
 
       <form onSubmit={submitQuestion}>
@@ -152,12 +162,9 @@ function Experts() {
           required
         />
 
-        <button type="submit">
-          Submit Question
-        </button>
+        <button type="submit">Submit Question</button>
       </form>
 
-      {/* Questions List */}
       <h2>Farmer Questions</h2>
 
       {loading && <p>Loading questions...</p>}
@@ -193,7 +200,6 @@ function Experts() {
               </div>
             )}
 
-            {/* Only expert accounts can see the answer form */}
             {user?.role === "expert" &&
               item.status !== "Answered" && (
                 <div>

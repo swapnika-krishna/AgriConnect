@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -13,6 +14,13 @@ function Crops() {
     soilType: "",
     waterRequirement: "",
     description: ""
+  });
+
+  // Get JWT token from localStorage
+  const getAuthConfig = () => ({
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`
+    }
   });
 
   const fetchCrops = async () => {
@@ -40,10 +48,18 @@ function Crops() {
 
     try {
       if (editingId) {
-        await axios.put(`${API_URL}/${editingId}`, form);
+        await axios.put(
+          `${API_URL}/${editingId}`,
+          form,
+          getAuthConfig()
+        );
         alert("Crop updated successfully!");
       } else {
-        await axios.post(API_URL, form);
+        await axios.post(
+          API_URL,
+          form,
+          getAuthConfig()
+        );
         alert("Crop added successfully!");
       }
 
@@ -59,7 +75,7 @@ function Crops() {
       fetchCrops();
     } catch (error) {
       console.error("Error saving crop:", error);
-      alert("Something went wrong!");
+      alert(error.response?.data?.message || "Something went wrong!");
     }
   };
 
@@ -88,18 +104,21 @@ function Crops() {
     if (!confirmed) return;
 
     try {
-      await axios.delete(`${API_URL}/${id}`);
+      await axios.delete(
+        `${API_URL}/${id}`,
+        getAuthConfig()
+      );
+
       alert("Crop deleted successfully!");
       fetchCrops();
     } catch (error) {
       console.error("Error deleting crop:", error);
-      alert("Unable to delete crop");
+      alert(error.response?.data?.message || "Unable to delete crop");
     }
   };
 
   return (
     <div className="crop-page">
-
       <div className="crop-header">
         <span>SMART AGRICULTURE</span>
         <h1>Crop Information</h1>
@@ -110,16 +129,12 @@ function Crops() {
       </div>
 
       <div className="crop-container">
-
-        {/* FORM */}
-
         <div className="crop-form-card">
           <h2>
             {editingId ? "✏️ Edit Crop" : "🌱 Add New Crop"}
           </h2>
 
           <form onSubmit={handleSubmit}>
-
             <input
               type="text"
               name="name"
@@ -175,7 +190,6 @@ function Crops() {
                 className="cancel-btn"
                 onClick={() => {
                   setEditingId(null);
-
                   setForm({
                     name: "",
                     season: "",
@@ -188,14 +202,10 @@ function Crops() {
                 Cancel
               </button>
             )}
-
           </form>
         </div>
 
-        {/* CROPS */}
-
         <div className="crop-list">
-
           <h2>Available Crops</h2>
 
           {crops.length === 0 ? (
@@ -205,13 +215,9 @@ function Crops() {
             </div>
           ) : (
             <div className="crop-grid">
-
               {crops.map((crop) => (
                 <div className="crop-card" key={crop._id}>
-
-                  <div className="crop-icon">
-                    🌱
-                  </div>
+                  <div className="crop-icon">🌱</div>
 
                   <h3>{crop.name}</h3>
 
@@ -232,7 +238,6 @@ function Crops() {
                   </p>
 
                   <div className="crop-actions">
-
                     <button
                       className="edit-btn"
                       onClick={() => handleEdit(crop)}
@@ -246,19 +251,13 @@ function Crops() {
                     >
                       Delete
                     </button>
-
                   </div>
-
                 </div>
               ))}
-
             </div>
           )}
-
         </div>
-
       </div>
-
     </div>
   );
 }

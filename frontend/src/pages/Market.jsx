@@ -17,7 +17,13 @@ function Market() {
     pricePerQuintal: ""
   });
 
-  // Fetch market prices
+  // Attach JWT token to protected requests
+  const getAuthConfig = () => ({
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`
+    }
+  });
+
   const fetchPrices = async () => {
     try {
       setLoading(true);
@@ -36,7 +42,6 @@ function Market() {
     fetchPrices();
   }, []);
 
-  // Handle form inputs
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -44,7 +49,6 @@ function Market() {
     });
   };
 
-  // Add market price
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -52,10 +56,14 @@ function Market() {
       setMessage("");
       setError("");
 
-      await axios.post(API_URL, {
-        ...formData,
-        pricePerQuintal: Number(formData.pricePerQuintal)
-      });
+      await axios.post(
+        API_URL,
+        {
+          ...formData,
+          pricePerQuintal: Number(formData.pricePerQuintal)
+        },
+        getAuthConfig()
+      );
 
       setMessage("Market price added successfully!");
 
@@ -75,7 +83,6 @@ function Market() {
     }
   };
 
-  // Delete market price
   const handleDelete = async (id) => {
     const confirmDelete = window.confirm(
       "Are you sure you want to delete this price?"
@@ -84,17 +91,23 @@ function Market() {
     if (!confirmDelete) return;
 
     try {
-      await axios.delete(`${API_URL}/${id}`);
+      await axios.delete(
+        `${API_URL}/${id}`,
+        getAuthConfig()
+      );
+
       setMessage("Market price deleted successfully!");
       fetchPrices();
     } catch (err) {
-      setError("Unable to delete market price.");
+      setError(
+        err.response?.data?.message ||
+        "Unable to delete market price."
+      );
     }
   };
 
   return (
     <div className="market-page">
-
       <div className="market-header">
         <h1>Market Price Tracking</h1>
         <p>
@@ -111,7 +124,6 @@ function Market() {
         <h2>Add Market Price</h2>
 
         <form onSubmit={handleSubmit} className="market-form">
-
           <input
             type="text"
             name="cropName"
@@ -153,7 +165,6 @@ function Market() {
           <button type="submit">
             Add Market Price
           </button>
-
         </form>
       </div>
 
@@ -174,10 +185,8 @@ function Market() {
           <p>No market prices available. Add your first price above!</p>
         ) : (
           <div className="market-grid">
-
             {prices.map((item) => (
               <div className="market-card" key={item._id}>
-
                 <span className="demo-label">DEMO PRICE</span>
 
                 <h3>{item.cropName}</h3>
@@ -206,14 +215,11 @@ function Market() {
                 >
                   Delete
                 </button>
-
               </div>
             ))}
-
           </div>
         )}
       </div>
-
     </div>
   );
 }

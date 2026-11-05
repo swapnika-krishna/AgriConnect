@@ -9,13 +9,13 @@ const {
   deleteMarketPrice
 } = require("../controllers/marketPriceController");
 
-// GET all market prices
+const { protect } = require("../middleware/authMiddleware");
+
+// Anyone can view market prices
 router.get("/", getMarketPrices);
 
-// POST a new market price
-router.post("/", addMarketPrice);
-
-// DELETE a market price
-router.delete("/:id", deleteMarketPrice);
+// Logged-in users can add and delete prices
+router.post("/", protect, addMarketPrice);
+router.delete("/:id", protect, deleteMarketPrice);
 
 module.exports = router;

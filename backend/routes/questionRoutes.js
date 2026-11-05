@@ -17,7 +17,7 @@ const {
 router.get("/", getQuestions);
 
 // Anyone can submit a question
-router.post("/", addQuestion);
+router.post("/", protect, addQuestion);
 
 // Only logged-in experts can answer questions
 router.put(
