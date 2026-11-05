@@ -79,7 +79,8 @@ Backend: http://localhost:5000
 
 The project uses MongoDB Atlas to store user accounts, crop information, market prices, and farmer questions.
 
-## Future Enhancements
+## Future En
+hancements
 
 - Real-time market price integration
 - Multilingual support
