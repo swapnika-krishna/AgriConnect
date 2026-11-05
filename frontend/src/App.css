@@ -1,340 +1,421 @@
+/* =========================================
+   GLOBAL LAYOUT
+========================================= */
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+main {
+  flex: 1;
 }
 
-body {
-  font-family: Arial, sans-serif;
-  color: #243629;
-  background: #f8faf6;
+button,
+a,
+input,
+textarea,
+select {
+  transition: all 0.2s ease;
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid #9bc9a6;
+  outline-offset: 3px;
 }
+
+/* =========================================
+   NAVIGATION BAR
+========================================= */
 
 .navbar {
-  min-height: 75px;
-  padding: 15px 6%;
-  background: white;
+  min-height: 76px;
+  padding: 13px 5%;
+  background: #ffffff;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  box-shadow: 0 2px 12px #0000000c;
-  gap: 20px;
-  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 22px;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 3px 16px rgba(20, 60, 35, 0.04);
 }
 
 .logo {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
+  font-family: 'Manrope', sans-serif;
   font-size: 23px;
-  font-weight: bold;
-  color: #24743d;
+  font-weight: 800;
+  color: var(--green-dark);
+  white-space: nowrap;
+}
+
+.logo svg {
+  color: #3b925a;
 }
 
 .nav-links {
   display: flex;
-  gap: 25px;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
   flex-wrap: wrap;
 }
 
 .nav-links a {
-  font-size: 14px;
-  font-weight: 600;
+  padding: 10px 13px;
+  border-radius: 9px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #718075;
 }
 
-.nav-links a:hover {
-  color: #258344;
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--green);
+  background: #edf5ed;
 }
 
 .nav-buttons {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 13px;
+  font-size: 13px;
+  font-weight: 600;
 }
 
-.login-btn, .register-btn, .primary-btn,
+.login-btn,
+.register-btn,
+.primary-btn,
 .secondary-btn {
-  padding: 12px 20px;
-  border-radius: 7px;
-  font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 19px;
+  border-radius: 9px;
+  font-weight: 700;
+  font-size: 13px;
 }
 
 .login-btn {
-  color: #287641;
+  color: var(--green);
+  background: transparent;
+  border: 1px solid transparent;
 }
 
-.register-btn, .primary-btn {
-  background: #287b42;
-  color: white;
+.login-btn:hover {
+  background: var(--green-light);
 }
+
+.register-btn,
+.primary-btn {
+  background: var(--green);
+  color: white;
+  border: 1px solid var(--green);
+}
+
+.register-btn:hover,
+.primary-btn:hover {
+  background: var(--green-dark);
+  transform: translateY(-2px);
+}
+
+/* =========================================
+   HOME PAGE
+========================================= */
 
 .hero {
-  padding: 65px 7%;
+  padding: 85px 7%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1.05fr 0.95fr;
   align-items: center;
-  gap: 45px;
-  background: #eff6e9;
+  gap: 55px;
+  background: linear-gradient(120deg, #edf5e9, #f8faf5);
 }
 
-.tag, .section-heading span {
-  color: #32844b;
-  font-weight: bold;
-  font-size: 13px;
+.hero-content {
+  max-width: 620px;
+}
+
+.tag,
+.section-heading span,
+.crop-header span,
+.weather-heading span {
+  color: #3b8753;
+  font-size: 11px;
+  font-weight: 800;
   letter-spacing: 2px;
+  text-transform: uppercase;
 }
 
 .hero h1 {
-  font-size: clamp(35px, 4vw, 54px);
-  line-height: 1.2;
-  margin: 20px 0;
+  font-family: 'Manrope', sans-serif;
+  font-size: clamp(36px, 4.5vw, 58px);
+  line-height: 1.15;
+  letter-spacing: -2px;
+  margin: 19px 0;
+  font-weight: 800;
 }
 
 .hero h1 span {
-  color: #2b8547;
+  color: #36834e;
 }
 
 .hero-content p {
-  color: #647568;
-  font-size: 17px;
-  line-height: 1.8;
-  margin-bottom: 30px;
+  color: #708075;
+  font-size: 16px;
+  line-height: 1.9;
+  margin-bottom: 28px;
 }
 
 .hero-buttons {
   display: flex;
-  gap: 15px;
+  align-items: center;
+  gap: 13px;
   flex-wrap: wrap;
 }
 
-.primary-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
+.secondary-btn {
+  background: white;
+  color: var(--green);
+  border: 1px solid #cddfce;
 }
 
-.secondary-btn {
-  border: 1px solid #287b42;
-  color: #287b42;
+.secondary-btn:hover {
+  background: #edf5ed;
 }
 
 .hero-image img {
   width: 100%;
-  height: 390px;
+  height: 410px;
   object-fit: cover;
-  border-radius: 20px;
+  border-radius: 24px;
+  box-shadow: 0 18px 45px rgba(35, 75, 45, 0.13);
 }
 
 .stats {
-  padding: 40px 7%;
+  padding: 38px 7%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-  text-align: center;
+  gap: 18px;
   background: white;
+  text-align: center;
 }
 
 .stats div {
-  padding: 15px;
+  padding: 22px 12px;
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  background: #fff;
 }
 
 .stats svg {
-  color: #30844a;
-  width: 30px;
-  height: 30px;
+  color: #3d8b56;
+  width: 29px;
+  height: 29px;
 }
 
 .stats h2 {
-  margin: 10px;
-  color: #277b40;
+  margin: 10px 0 5px;
+  color: var(--green);
+  font-size: 27px;
+  font-weight: 800;
 }
 
 .stats p {
-  color: #778579;
+  color: var(--muted);
+  font-size: 13px;
 }
 
 .features-section {
   padding: 75px 7%;
+  background: #f7f9f5;
 }
 
 .section-heading {
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 42px;
 }
 
 .section-heading h2 {
-  margin: 15px 0;
-  font-size: 34px;
+  margin: 13px 0;
+  font-size: clamp(26px, 3vw, 36px);
+  font-weight: 800;
 }
 
 .section-heading p {
-  color: #748175;
+  color: var(--muted);
+  font-size: 15px;
 }
 
 .feature-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+  gap: 19px;
 }
 
 .feature-card {
   background: white;
-  padding: 28px 22px;
-  border-radius: 12px;
-  box-shadow: 0 4px 18px #00000009;
-  transition: .3s;
+  padding: 27px 23px;
+  border-radius: 17px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .feature-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-6px);
+  box-shadow: 0 15px 35px rgba(31, 65, 43, 0.1);
 }
 
 .feature-icon {
-  background: #eaf5eb;
-  color: #2b8547;
+  background: #eaf4e9;
+  color: #32804b;
   display: inline-flex;
-  padding: 13px;
-  border-radius: 10px;
+  padding: 14px;
+  border-radius: 13px;
 }
 
 .feature-card h3 {
-  margin: 20px 0 12px;
-  font-size: 19px;
+  margin: 20px 0 11px;
+  font-size: 18px;
+  font-weight: 800;
 }
 
 .feature-card p {
-  color: #718074;
-  line-height: 1.6;
-  min-height: 75px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.8;
+  min-height: 70px;
 }
 
 .feature-card a {
-  color: #288044;
-  font-weight: bold;
+  color: var(--green);
+  font-size: 13px;
+  font-weight: 800;
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  margin-top: 20px;
+  gap: 6px;
+  margin-top: 19px;
 }
 
 .cta {
-  background: #eaf4e7;
-  padding: 55px 20px;
+  background: #e8f2e6;
+  padding: 60px 20px;
   text-align: center;
 }
 
 .cta svg {
-  color: #30844a;
+  color: var(--green);
 }
 
 .cta h2 {
   margin: 15px;
-  font-size: 30px;
+  font-size: 29px;
 }
 
 .cta p {
-  margin-bottom: 25px;
-  color: #718074;
+  margin-bottom: 24px;
+  color: var(--muted);
 }
+
+/* =========================================
+   FOOTER
+========================================= */
 
 .footer {
   padding: 35px 15px;
   text-align: center;
-  background: #183e29;
-  color: white;
+  background: #173e2b;
+  color: #e5f0e6;
   line-height: 2;
+  font-size: 13px;
+}
+
+.footer p {
+  color: #c5d8c8;
+}
+
+/* =========================================
+   COMMON PAGE HEADINGS
+========================================= */
+
+.simple-page,
+.crop-page,
+.market-page,
+.weather-page {
+  min-height: 75vh;
+  padding: 55px 7%;
 }
 
 .simple-page {
-  min-height: 65vh;
-  padding: 80px 7%;
+  max-width: 1250px;
+  width: 100%;
+  margin: 0 auto;
 }
 
-.simple-page h1 {
-  color: #287b42;
-  margin-bottom: 15px;
+.simple-page > h1 {
+  font-size: 34px;
+  font-weight: 800;
+  color: var(--green-dark);
+  margin-bottom: 12px;
 }
 
-@media (max-width: 900px) {
-  .hero {
-    grid-template-columns: 1fr;
-  }
-
-  .feature-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .nav-links {
-    justify-content: center;
-  }
+.simple-page h2 {
+  color: var(--green-dark);
+  font-weight: 800;
 }
 
-@media (max-width: 550px) {
-  .navbar {
-    justify-content: center;
-  }
+/* =========================================
+   CROPS PAGE
+========================================= */
 
-  .nav-links {
-    gap: 12px;
-  }
-
-  .feature-grid, .stats {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .hero-image img {
-    height: 250px;
-  }
-}
 .crop-page {
-  padding: 55px 7%;
-  min-height: 70vh;
+  background: #f6f8f3;
 }
 
 .crop-header {
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.crop-header span {
-  color: #2b8547;
-  font-size: 13px;
-  font-weight: bold;
-  letter-spacing: 2px;
+  text-align: left;
+  margin-bottom: 35px;
 }
 
 .crop-header h1 {
-  font-size: 38px;
+  font-size: 35px;
+  font-weight: 800;
   margin: 12px 0;
 }
 
 .crop-header p {
-  color: #718074;
+  color: var(--muted);
+  font-size: 14px;
 }
 
 .crop-container {
   display: grid;
   grid-template-columns: 320px 1fr;
-  gap: 35px;
+  gap: 28px;
   align-items: start;
 }
 
-.crop-form-card {
+.crop-form-card,
+.crop-card,
+.empty-crops {
   background: white;
   padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px #0000000d;
+  border-radius: 17px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
 }
 
-.crop-form-card h2 {
+.crop-form-card h2,
+.crop-list h2 {
   margin-bottom: 20px;
-  color: #287b42;
+  font-size: 19px;
+  font-weight: 800;
 }
 
 .crop-form-card form {
@@ -346,87 +427,99 @@ a {
 .crop-form-card input,
 .crop-form-card textarea {
   width: 100%;
-  padding: 12px;
-  border: 1px solid #dce5dc;
-  border-radius: 7px;
-  font-family: inherit;
+  padding: 13px 14px;
+  border: 1px solid #e0e8df;
+  background: #fafcf9;
+  border-radius: 9px;
+  font-size: 13px;
   outline: none;
 }
 
 .crop-form-card input:focus,
 .crop-form-card textarea:focus {
-  border-color: #287b42;
+  border-color: #4b9b62;
+  background: white;
+  box-shadow: 0 0 0 3px #e9f4e9;
 }
 
 .save-btn,
 .cancel-btn {
   padding: 12px;
   border: none;
-  border-radius: 7px;
+  border-radius: 9px;
   cursor: pointer;
-  font-weight: bold;
+  font-weight: 800;
+  font-size: 13px;
 }
 
 .save-btn {
-  background: #287b42;
+  background: var(--green);
   color: white;
 }
 
-.cancel-btn {
-  background: #e8ece8;
-  color: #333;
+.save-btn:hover {
+  background: var(--green-dark);
 }
 
-.crop-list h2 {
-  margin-bottom: 20px;
+.cancel-btn {
+  background: #edf1ec;
+  color: #526455;
 }
 
 .crop-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 17px;
 }
 
 .crop-card {
-  background: white;
-  padding: 23px;
-  border-radius: 12px;
-  box-shadow: 0 4px 18px #0000000c;
+  transition: transform 0.2s ease;
+}
+
+.crop-card:hover {
+  transform: translateY(-4px);
 }
 
 .crop-icon {
-  font-size: 32px;
+  font-size: 34px;
+  display: inline-block;
+  background: #edf5e9;
+  padding: 11px;
+  border-radius: 13px;
 }
 
 .crop-card h3 {
-  margin: 10px 0 15px;
-  color: #287b42;
-  font-size: 22px;
+  margin: 14px 0;
+  color: var(--green-dark);
+  font-size: 20px;
+  font-weight: 800;
 }
 
 .crop-card p {
-  color: #647568;
+  color: #718075;
+  font-size: 13px;
   margin: 7px 0;
 }
 
 .crop-description {
-  line-height: 1.5;
-  margin-top: 15px !important;
+  line-height: 1.7;
+  margin-top: 13px !important;
 }
 
 .crop-actions {
   display: flex;
-  gap: 10px;
+  gap: 9px;
   margin-top: 20px;
 }
 
 .edit-btn,
 .delete-btn {
   border: none;
-  padding: 9px 17px;
-  border-radius: 6px;
+  padding: 9px 15px;
+  border-radius: 8px;
   cursor: pointer;
-  font-weight: bold;
+  font-weight: 800;
+  font-size: 12px;
 }
 
 .edit-btn {
@@ -435,92 +528,90 @@ a {
 }
 
 .delete-btn {
-  background: #fbe7e7;
-  color: #c0392b;
+  background: #fff0ed;
+  color: #c34a3c;
 }
 
 .empty-crops {
-  background: white;
-  padding: 50px;
   text-align: center;
-  border-radius: 12px;
+  padding: 45px 20px;
 }
 
 .empty-crops p {
-  color: #718074;
+  color: var(--muted);
   margin-top: 10px;
 }
 
-@media (max-width: 800px) {
-  .crop-container {
-    grid-template-columns: 1fr;
-  }
-
-  .crop-grid {
-    grid-template-columns: 1fr;
-  }
-}
+/* =========================================
+   WEATHER PAGE
+========================================= */
 
 .weather-page {
-  min-height: 70vh;
-  padding: 55px 7%;
-  background: #f2f7ef;
+  background: #f1f6ee;
 }
 
 .weather-heading {
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-.weather-heading span {
-  color: #32844b;
-  font-weight: bold;
-  letter-spacing: 2px;
+  text-align: left;
+  margin-bottom: 28px;
 }
 
 .weather-heading h1 {
   font-size: 36px;
+  font-weight: 800;
   margin: 12px 0;
 }
 
 .weather-heading p {
-  color: #718074;
+  color: var(--muted);
+  font-size: 14px;
 }
 
 .weather-search {
   display: flex;
-  gap: 10px;
-  max-width: 550px;
-  margin: 0 auto 30px;
+  gap: 11px;
+  max-width: 570px;
+  margin: 0 0 28px;
 }
 
 .weather-search input {
   flex: 1;
   min-width: 0;
-  padding: 14px;
-  border: 1px solid #dce5dc;
-  border-radius: 8px;
+  padding: 14px 16px;
+  border: 1px solid #dce6da;
+  border-radius: 10px;
+  background: white;
+  font-size: 14px;
+}
+
+.weather-search input:focus {
+  outline: none;
+  border-color: #4b9b62;
 }
 
 .weather-search button {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
-  padding: 12px 20px;
-  background: #287b42;
+  padding: 12px 22px;
+  background: var(--green);
   color: white;
   border: none;
-  border-radius: 8px;
-  cursor: pointer;
+  border-radius: 10px;
+  font-weight: 700;
+}
+
+.weather-search button:hover {
+  background: var(--green-dark);
 }
 
 .weather-card {
-  max-width: 650px;
-  margin: auto;
-  padding: 30px;
+  max-width: 780px;
+  padding: 32px;
   background: white;
-  border-radius: 16px;
-  box-shadow: 0 5px 20px #0000000c;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
   text-align: center;
 }
 
@@ -528,279 +619,299 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 15px;
+  gap: 18px;
   margin: 20px;
 }
 
 .weather-main img {
-  width: 100px;
+  width: 95px;
 }
 
 .weather-main h1 {
-  font-size: 48px;
-  color: #287b42;
+  font-size: 50px;
+  color: var(--green);
+  font-weight: 800;
 }
 
 .weather-main p {
   text-transform: capitalize;
-  color: #718074;
+  color: var(--muted);
 }
 
 .feels-like {
-  color: #718074;
+  color: var(--muted);
+  font-size: 13px;
 }
 
 .weather-details {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 12px;
-  margin-top: 30px;
+  margin-top: 28px;
 }
 
 .weather-details div {
-  background: #eff6e9;
-  border-radius: 10px;
-  padding: 18px 8px;
+  background: #f0f6ed;
+  border: 1px solid #e6eee3;
+  border-radius: 13px;
+  padding: 19px 8px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 9px;
 }
 
 .weather-details svg {
-  color: #287b42;
+  color: var(--green);
 }
 
 .weather-details span {
   font-size: 12px;
-  color: #718074;
+  color: var(--muted);
 }
 
 .weather-note {
-  margin-top: 25px;
-  line-height: 1.6;
-  color: #718074;
+  margin-top: 23px;
+  line-height: 1.7;
+  color: var(--muted);
+  font-size: 13px;
 }
 
 .weather-error,
 .weather-hint {
-  text-align: center;
+  text-align: left;
   color: #b33b32;
-  margin: 20px;
+  margin: 20px 0;
+  font-size: 13px;
 }
 
-@media (max-width: 600px) {
-  .weather-details {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* MARKET PRICE TRACKING */
+/* =========================================
+   MARKET PAGE
+========================================= */
 
 .market-page {
-  padding: 35px 6%;
-  min-height: 80vh;
+  background: #f6f8f3;
 }
 
 .market-header {
-  text-align: center;
-  margin-bottom: 25px;
+  text-align: left;
+  margin-bottom: 27px;
 }
 
 .market-header h1 {
-  color: #246b35;
-  font-size: 32px;
+  color: var(--green-dark);
+  font-size: 35px;
+  font-weight: 800;
+  margin-bottom: 9px;
 }
 
 .market-header p {
-  color: #666;
+  color: var(--muted);
+  font-size: 14px;
 }
 
 .demo-warning {
-  background: #fff3cd;
-  color: #856404;
-  padding: 15px;
-  border-radius: 8px;
+  background: #fff7df;
+  color: #87631c;
+  padding: 15px 18px;
+  border: 1px solid #f0e3b8;
+  border-radius: 11px;
   margin-bottom: 25px;
-  text-align: center;
+  font-size: 13px;
 }
 
 .market-form-section {
-  background: #f7faf7;
-  padding: 25px;
-  border-radius: 12px;
-  margin-bottom: 35px;
+  background: white;
+  padding: 26px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  margin-bottom: 32px;
 }
 
 .market-form-section h2,
 .market-list-section h2 {
-  color: #246b35;
-  margin-bottom: 20px;
+  color: var(--green-dark);
+  margin-bottom: 19px;
+  font-size: 20px;
+  font-weight: 800;
 }
 
 .market-form {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 15px;
+  gap: 14px;
 }
 
 .market-form input {
-  padding: 13px;
-  border: 1px solid #ccc;
-  border-radius: 7px;
-  font-size: 15px;
+  padding: 13px 14px;
+  border: 1px solid #e0e8df;
+  border-radius: 9px;
+  background: #fafcf9;
+  font-size: 13px;
   width: 100%;
-  box-sizing: border-box;
+}
+
+.market-form input:focus {
+  outline: none;
+  border-color: #4b9b62;
 }
 
 .market-form button {
   grid-column: span 2;
-  padding: 13px;
-  background: #287a3d;
+  padding: 14px;
+  background: var(--green);
   color: white;
   border: none;
-  border-radius: 7px;
-  cursor: pointer;
-  font-size: 16px;
+  border-radius: 9px;
+  font-weight: 800;
 }
 
 .market-form button:hover {
-  background: #1d5d2d;
+  background: var(--green-dark);
 }
 
 .market-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
 }
 
 .market-card {
   background: white;
-  padding: 22px;
-  border-radius: 12px;
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
-  border: 1px solid #e5e5e5;
+  padding: 23px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  transition: transform 0.2s ease;
+}
+
+.market-card:hover {
+  transform: translateY(-4px);
 }
 
 .market-card h3 {
-  color: #246b35;
-  font-size: 23px;
+  color: var(--green-dark);
+  font-size: 19px;
+  margin: 13px 0;
+  font-weight: 800;
 }
 
 .market-card h2 {
-  color: #218838;
-  font-size: 27px;
+  color: #31824b;
+  font-size: 28px;
+  font-weight: 800;
   margin-bottom: 0;
 }
 
 .demo-label {
+  display: inline-block;
   background: #fff3cd;
   color: #856404;
   padding: 5px 9px;
-  border-radius: 5px;
-  font-size: 11px;
-  font-weight: bold;
+  border-radius: 6px;
+  font-size: 10px;
+  font-weight: 800;
 }
 
 .price-unit,
 .price-date {
-  color: #777;
-  font-size: 13px;
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 8px;
 }
 
 .delete-price-btn {
-  background: #dc3545;
-  color: white;
+  background: #fff0ed;
+  color: #c34a3c;
   border: none;
-  padding: 9px 18px;
-  border-radius: 6px;
-  cursor: pointer;
-  margin-top: 10px;
+  padding: 9px 15px;
+  border-radius: 8px;
+  font-weight: 700;
+  margin-top: 13px;
 }
 
 .success-message {
-  color: green;
+  color: #287b42;
   margin: 15px 0;
+  font-size: 13px;
 }
 
 .error-message {
-  color: red;
+  color: #c0392b;
   margin: 15px 0;
+  font-size: 13px;
 }
 
-@media (max-width: 600px) {
-  .market-form {
-    grid-template-columns: 1fr;
-  }
+/* =========================================
+   LOGIN AND REGISTER
+========================================= */
 
-  .market-form button {
-    grid-column: span 1;
-  }
-
-  .market-header h1 {
-    font-size: 25px;
-  }
-}
-
-/* Authentication Pages */
 .auth-container {
-  min-height: 75vh;
+  min-height: 78vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 30px 15px;
-  background: #f4f8f2;
+  padding: 40px 16px;
+  background: linear-gradient(135deg, #edf5e9, #f8faf5);
 }
 
 .auth-form {
   width: 100%;
-  max-width: 420px;
-  padding: 35px;
-  background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.1);
+  max-width: 440px;
+  padding: 36px;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  box-shadow: 0 15px 45px rgba(31, 65, 43, 0.09);
 }
 
 .auth-form h2 {
   text-align: center;
-  color: #245c32;
+  color: var(--green-dark);
   margin-bottom: 10px;
+  font-size: 27px;
+  font-weight: 800;
 }
 
 .auth-form p {
   text-align: center;
-  color: #666;
-  margin-bottom: 18px;
+  color: var(--muted);
+  margin-bottom: 22px;
+  font-size: 13px;
 }
 
-.auth-form input {
+.auth-form input,
+.auth-form select {
   width: 100%;
-  padding: 12px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 15px;
-  box-sizing: border-box;
+  padding: 14px;
+  margin-bottom: 14px;
+  border: 1px solid #e0e8df;
+  background: #fafcf9;
+  border-radius: 9px;
+  font-size: 14px;
 }
 
-.auth-form input:focus {
+.auth-form input:focus,
+.auth-form select:focus {
   outline: none;
-  border-color: #2e7d32;
+  border-color: #4b9b62;
+  background: white;
 }
 
 .auth-form button {
   width: 100%;
-  padding: 12px;
-  background: #2e7d32;
+  padding: 14px;
+  background: var(--green);
   color: white;
   border: none;
-  border-radius: 6px;
-  font-size: 16px;
-  cursor: pointer;
+  border-radius: 9px;
+  font-size: 14px;
+  font-weight: 800;
 }
 
 .auth-form button:hover {
-  background: #1b5e20;
+  background: var(--green-dark);
 }
 
 .auth-form button:disabled {
@@ -809,68 +920,78 @@ a {
 }
 
 .auth-form a {
-  color: #2e7d32;
-  font-weight: bold;
-  text-decoration: none;
+  color: var(--green);
+  font-weight: 800;
 }
 
-/* Experts Page Styling */
+/* =========================================
+   EXPERTS PAGE
+========================================= */
 
 .simple-page {
-  max-width: 1100px;
-  margin: 30px auto;
-  padding: 25px;
+  background: transparent;
 }
 
-.simple-page h1 {
-  color: #245c32;
-  margin-bottom: 12px;
+.simple-page > p {
+  color: var(--muted);
+  font-size: 14px;
 }
 
 .simple-page h2 {
-  color: #2e7d32;
   margin-top: 30px;
   margin-bottom: 15px;
+  font-size: 20px;
 }
 
 .simple-page form {
-  background: #f4f8f2;
-  padding: 25px;
-  border-radius: 12px;
+  background: white;
+  border: 1px solid var(--border);
+  padding: 27px;
+  border-radius: 17px;
+  box-shadow: var(--shadow);
   margin: 20px 0;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 14px;
 }
 
 .simple-page input,
 .simple-page select,
 .simple-page textarea {
   width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 7px;
-  font-size: 15px;
-  box-sizing: border-box;
+  padding: 13px 15px;
+  border: 1px solid #e0e8df;
+  background: #fafcf9;
+  border-radius: 9px;
+  font-size: 13px;
+}
+
+.simple-page input:focus,
+.simple-page select:focus,
+.simple-page textarea:focus {
+  outline: none;
+  border-color: #4b9b62;
+  background: white;
 }
 
 .simple-page textarea {
-  min-height: 100px;
+  min-height: 110px;
   resize: vertical;
 }
 
 .simple-page button {
-  padding: 12px 20px;
-  background: #2e7d32;
+  padding: 13px 20px;
+  background: var(--green);
   color: white;
   border: none;
-  border-radius: 7px;
+  border-radius: 9px;
   cursor: pointer;
-  font-size: 15px;
+  font-size: 13px;
+  font-weight: 800;
 }
 
 .simple-page button:hover {
-  background: #1b5e20;
+  background: var(--green-dark);
 }
 
 .simple-page button:disabled {
@@ -880,11 +1001,161 @@ a {
 
 .simple-page hr {
   border: none;
-  border-top: 1px solid #ddd;
-  margin: 20px 0;
+  border-top: 1px solid var(--border);
+  margin: 22px 0;
 }
 
 .simple-page p {
-  line-height: 1.6;
+  line-height: 1.7;
 }
 
+/* =========================================
+   RESPONSIVE DESIGN
+========================================= */
+
+@media (max-width: 1050px) {
+  .navbar {
+    padding: 14px 3%;
+  }
+
+  .nav-links {
+    gap: 2px;
+  }
+
+  .nav-links a {
+    padding: 9px;
+    font-size: 12px;
+  }
+
+  .feature-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .crop-container {
+    grid-template-columns: 280px 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .navbar {
+    position: relative;
+    justify-content: center;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .nav-links {
+    width: 100%;
+    gap: 5px;
+  }
+
+  .nav-links a {
+    font-size: 12px;
+  }
+
+  .nav-buttons {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 55px 6%;
+    gap: 30px;
+  }
+
+  .hero-image img {
+    height: 300px;
+  }
+
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 25px 5%;
+  }
+
+  .crop-container {
+    grid-template-columns: 1fr;
+  }
+
+  .crop-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .weather-details {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 520px) {
+  .logo {
+    font-size: 21px;
+  }
+
+  .nav-links {
+    justify-content: center;
+  }
+
+  .nav-links a {
+    padding: 8px;
+    font-size: 11px;
+  }
+
+  .hero h1 {
+    font-size: 37px;
+  }
+
+  .hero-image img {
+    height: 230px;
+  }
+
+  .feature-grid,
+  .crop-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stats {
+    gap: 10px;
+  }
+
+  .features-section,
+  .crop-page,
+  .weather-page,
+  .market-page,
+  .simple-page {
+    padding: 38px 5%;
+  }
+
+  .weather-search {
+    flex-direction: column;
+  }
+
+  .weather-search button {
+    width: 100%;
+  }
+
+  .weather-card {
+    padding: 20px 14px;
+  }
+
+  .weather-main h1 {
+    font-size: 38px;
+  }
+
+  .market-form {
+    grid-template-columns: 1fr;
+  }
+
+  .market-form button {
+    grid-column: span 1;
+  }
+
+  .auth-form {
+    padding: 25px 20px;
+  }
+
+  .market-header h1,
+  .crop-header h1,
+  .weather-heading h1 {
+    font-size: 28px;
+  }
+}
