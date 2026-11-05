@@ -73,7 +73,7 @@ npm run dev
 
 Frontend: http://localhost:5173
 
-Backend: http://localhost:5000
+Backend: https://agriconnect-backend-l7ak.onrender.com
 
 ## Database
 

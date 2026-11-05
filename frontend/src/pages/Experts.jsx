@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/api/questions";
+const API_URL = "https://agriconnect-backend-l7ak.onrender.com/api/questions";
 
 function Experts() {
   const user = JSON.parse(localStorage.getItem("user") || "null");

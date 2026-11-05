@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/api/market-prices";
+const API_URL = "https://agriconnect-backend-l7ak.onrender.com/api/market-prices";
 
 function Market() {
   const [prices, setPrices] = useState([]);

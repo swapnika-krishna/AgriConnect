@@ -18,7 +18,7 @@ function Weather() {
 
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/weather?city=${encodeURIComponent(city)}`
+        `https://agriconnect-backend-l7ak.onrender.com/api/weather?city=${encodeURIComponent(city)}`
       );
 
       setWeather(response.data);
